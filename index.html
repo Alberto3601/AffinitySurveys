@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Complete Trade Tasks</title>
+  <style>
+    body { font-family: 'Poppins', sans-serif; background: linear-gradient(to right, #d4fc79, #96e6a1); margin: 0; padding: 20px; color: #333; }
+    .container { max-width: 900px; margin: 0 auto; padding: 30px; background: #ffffff; border-radius: 15px; box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1); animation: fadeIn 0.8s ease-in; }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    h1, h2 { color: #2b5876; text-align: center; margin-bottom: 10px; }
+    p { font-size: 1.1rem; line-height: 1.6; text-align: center; margin-bottom: 20px; }
+    .task { background: #f0f8ff; margin: 20px 0; padding: 20px; border-radius: 12px; text-align: center; transition: transform 0.3s, box-shadow 0.3s; }
+    .task:hover { transform: scale(1.02); box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); }
+    .task img { width: 100%; max-width: 200px; margin-top: 15px; border-radius: 10px; transition: transform 0.3s; }
+    .task img:hover { transform: scale(1.05); }
+    .button { padding: 12px 25px; background: linear-gradient(to right, #43cea2, #185a9d); color: white; font-weight: bold; border: none; border-radius: 30px; cursor: pointer; margin-top: 10px; transition: background 0.3s, transform 0.3s; }
+    .button:hover { background: linear-gradient(to right, #185a9d, #43cea2); transform: scale(1.05); }
+    .account, .form-container { margin-top: 40px; padding: 20px; border: 2px dashed #2b5876; border-radius: 15px; background: #f9f9f9; text-align: center; }
+    input { width: 100%; padding: 12px; margin-top: 10px; border: 1px solid #ccc; border-radius: 8px; font-size: 1rem; transition: border-color 0.3s; }
+    input:focus { border-color: #2b5876; outline: none; }
+    strong { font-size: 1.2rem; }
+    ul { max-width: 800px; margin: 0 auto; text-align: left; }
+    .card { margin: 20px auto; max-width: 500px; padding: 20px; border-radius: 12px; background: #f0f8ff; box-shadow: 0 5px 15px rgba(0,0,0,0.1); text-align: center; }
+  </style>
+  <script>
+    let tasksCompleted = 0;
+    const totalTasks = 5;
+    const products = [
+      { name: "AirPods", price: 100, image: "one.jpg" },
+      { name: "Nike Shoes", price: 200, image: "two.jpg" },
+      { name: "iPhone 13", price: 4000, image: "three.jpg" },
+      { name: "Acer Laptop", price: 3000, image: "four.jpg" },
+      { name: "iPhone 16", price: 3500, image: "five.jpg" },
+    ];
+
+    window.onload = function() {
+      displayProducts();
+    };
+
+    function completeTask(taskId) {
+      document.getElementById(taskId).style.display = 'none';
+      tasksCompleted++;
+      if (tasksCompleted === totalTasks) {
+        alert("Congratulations! You completed all tasks.");
+      } else {
+        alert("Task completed! Keep going.");
+      }
+    }
+
+    function displayProducts() {
+      const taskContainer = document.getElementById('task-container');
+      products.forEach((product, index) => {
+        const taskDiv = document.createElement('div');
+        taskDiv.className = 'task';
+        taskDiv.id = `task${index + 1}`;
+        taskDiv.innerHTML = `
+          <h2>Task: ${product.name}</h2>
+          <img src="${product.image}" alt="${product.name}">
+          <p>Price: GHC ${product.price}</p>
+          <button class="button" onclick="completeTask('task${index + 1}')">Complete Task</button>
+        `;
+        taskContainer.appendChild(taskDiv);
+      });
+    }
+  </script>
+</head>
+<body>
+  <div class="container">
+    <h1>Complete Trade Tasks</h1>
+    <p>Finish the tasks below to test the demo system.</p>
+
+    <div id="task-container"></div>
+
+    <div class="account">
+      <h2>Your Account</h2>
+      <p><strong>Balance: GHS <span id="account-balance">0.00</span></strong></p>
+      <p>(Demo only – no real money involved)</p>
+    </div>
+
+    <div class="form-container">
+      <h2>Withdraw Funds (Demo)</h2>
+      <form onsubmit="event.preventDefault(); alert('Demo only – no withdrawal processed.');">
+        <input type="text" placeholder="Your Phone Number" required />
+        <input type="number" placeholder="Amount to withdraw" required />
+        <button class="button" type="submit">Withdraw</button>
+      </form>
+    </div>
+
+    <div class="form-container">
+      <h2>Deposit Funds (Demo)</h2>
+      <form onsubmit="event.preventDefault(); alert('Demo only – no deposit processed.');">
+        <input type="text" placeholder="Your Phone Number" required />
+        <input type="number" placeholder="Amount Deposited (GHS)" required />
+        <input type="text" placeholder="Transaction ID" required />
+        <button class="button" type="submit">Submit Deposit</button>
+      </form>
+    </div>
+  </div>
+
+  <h1>Investment Packages (Demo)</h1>
+  <p>This is a sample section to showcase how packages could be displayed.</p>
+
+  <div class="card">
+    <h2>Starter Plan</h2>
+    <p>Investment: GHS40</p>
+    <p>Sample returns for demo purposes.</p>
+  </div>
+
+  <div class="card">
+    <h2>Silver Plan</h2>
+    <p>Investment: GHS50</p>
+    <p>Sample returns for demo purposes.</p>
+  </div>
+
+  <div class="card">
+    <h2>Gold Plan</h2>
+    <p>Investment: GHS70</p>
+    <p>Sample returns for demo purposes.</p>
+  </div>
+
+  <div class="card">
+    <h2>Platinum Plan</h2>
+    <p>Investment: GHS100</p>
+    <p>Sample returns for demo purposes.</p>
+  </div>
+</body>
+</html>
